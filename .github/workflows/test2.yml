@@ -1,0 +1,45 @@
+name: multiple jobs example
+on: push
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout repository
+            uses: actions/checkout@v3
+          - name: Install nodejs18
+            uses: actions/setup-node@v3
+            with:
+              node-version: '18'
+          - name: Install dependencies
+            run: npm ci
+          - name : run npm lint
+            run: npm run lint
+
+    test:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout repository
+            uses: actions/checkout@v3
+          - name: Install nodejs18
+            uses: actions/setup-node@v3
+            with:
+              node-version: '18'
+          - name: Install dependencies
+            run: npm ci
+          - name: run test
+            run: npm test
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout repository
+            uses: actions/checkout@v3
+          - name: Install nodejs18
+            uses: actions/setup-node@v3
+            with:
+              node-version: '18'
+          - name: Install dependencies
+            run: npm ci
+          - name: run build
+            run: npm run build
+          - name: deploy application
+            run: echo "deploy application"
